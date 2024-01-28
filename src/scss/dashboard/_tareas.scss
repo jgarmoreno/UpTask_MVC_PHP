@@ -1,0 +1,68 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-nueva-tarea {
+    display: flex;
+    justify-content: center;
+    .agregar-tarea {
+        border-radius: .5rem;
+        @include m.boton(v.$cyan, v.$blanco);
+    }
+}
+.listado-tareas {
+    list-style: none;
+    padding: 0;
+    margin-top: 5rem;
+    .no-tareas {
+        text-align: center;
+        margin-top: 5rem;
+        font-size: 2rem;
+        color: #6b7280;
+        line-height: 1.8;
+    }
+}
+.tarea {
+    padding: .5rem 2rem;
+    border-bottom: 2px solid darken(v.$grisClaro, 5%);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:last-of-type {
+        border: none;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    .opciones {
+        display: flex;
+        gap: 1rem;
+        margin-left: 1.4rem;
+
+        button {
+            border: none;
+            font-size: .9rem;
+            padding: .5rem 1.2rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 1rem;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .completada {
+            background-color: v.$azul;
+            color: v.$blanco;
+        }
+        .pendiente {
+            background-color: v.$naranja;
+            color: v.$blanco;
+        }
+        .eliminar-tarea {
+            background-color: v.$rojo;
+            color: v.$blanco;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+@use 'base/variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+
+@mixin boton($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1.5rem 4rem;
+    color: $colorTexto;
+    font-size: 1.6rem;
+    display: inline-block;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: block;
+    width: 100%;
+    @include tablet {
+        width: auto;
+    }
+    &:hover {
+        background-color: darken( $bgColor, 10% );
+        cursor: pointer;
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin textoDegradado($color, $color2) {
+    // 1º Se crea un background (no afecta a las letras). Dices la dirección y luego los dos colores. Primera posición se marca con un 0% y la última con un 100%
+    // 2º Luego, se le pide al texto que se haga transparente. No se verán las letras pero están ahí
+    // 3º Se le aplica un clip al texto. Es decir, se clipea las características del background al texto, ya que se le dió de valor al backgroundclip: text
+    background: linear-gradient(to right, $color 0%, lighten($color2,  30%) 100%);
+    color: transparent;
+    background-clip: text;
+    font-size: 7rem;
+    text-align: center;
+
+    @include tablet {
+        font-size: 10rem;
+    }
+}
