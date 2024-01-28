@@ -207,9 +207,7 @@
         datos.append('proyectoId', obtenerProyecto());
 
         try {
-            const dominio = $_ENV['APP_URL'];
-            const path = "/api/tarea";
-            const url = dominio.concat(path);
+            const url = 'http://localhost:3000/api/tarea';
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
@@ -253,9 +251,7 @@
         //     console.log(valor);
         // }
         try {
-            const dominio = $_ENV['APP_URL'];
-            const path = "/api/tarea/actualizar";
-            const url = dominio.concat(path);
+            const url = 'http://localhost:3000/api/tarea/actualizar';
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
@@ -306,9 +302,7 @@
         datos.append('estado', estado);
         datos.append('proyectoId', obtenerProyecto());
         try {
-            const dominio = $_ENV['APP_URL'];
-            const path = "/api/tarea/eliminar";
-            const url = dominio.concat(path);
+            const url = 'http://localhost:3000/api/tarea/eliminar';
             const respuesta = await fetch(url, {
                 method: 'POST',
                 body: datos
