@@ -19,15 +19,15 @@ class Email {
     public function enviarConfirmacion() {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '09bc78b81a9541';
-        $mail->Password = 'cdb6d072867571';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         // Datos
-        $mail->setFrom('jorgarcmoreno@gmail.com');
-        $mail->addAddress('admin@uptask.com', 'UpTask.com');
+        $mail->setFrom('soporte@uptask.com');
+        $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Confirma tu cuenta en UpTask';
 
         // Set HTML
@@ -83,7 +83,7 @@ class Email {
                 <h1>UpTask</h1>
                 <h2>¡Gracias por registrarte, ".$this->nombre."!</h2>
                 <p>Por favor, confirma tu correo electrónico para que puedas comenzar a disfrutar de todos los servicios de UpTask.</p>
-                <a href='http://localhost:3000/cuenta-confirmada?token=" . $this->token . "'><button>Confirmar cuenta</button></a>
+                <a href='" . $_ENV['APP_URL']  . "/cuenta-confirmada?token=" . $this->token . "'><button>Confirmar cuenta</button></a>
                 <p>Si no te registraste en UpTask, por favor ignora este correo electrónico.</p>
                 <div><p></p></div>
                 <p><span>Este correo electrónico fue enviado desde una dirección solamente de notificaciones que no puede aceptar correo electrónico entrante. Por favor no respondas a este mensaje.</span></p>
@@ -95,15 +95,15 @@ class Email {
     public function enviarInstrucciones() {
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '09bc78b81a9541';
-        $mail->Password = 'cdb6d072867571';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         // Datos
-        $mail->setFrom('jorgarcmoreno@gmail.com');
-        $mail->addAddress('admin@uptask.com', 'UpTask.com');
+        $mail->setFrom('soporte@uptask.com');
+        $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'Recupera tu cuenta de UpTask';
 
         // Set HTML
@@ -159,7 +159,7 @@ class Email {
                 <h1>UpTask</h1>
                 <h2>Reestablece tu contraseña</h2>
                 <p>Por favor, clica en el botón inferior para poder iniciar el proceso de recuperación de tu cuenta en UpTask.</p>
-                <a href='http://localhost:3000/reestablecer-cuenta?token=" . $this->token . "'><button>Reestablecer contraseña</button></a>
+                <a href='" . $_ENV['APP_URL']  . "/reestablecer-cuenta?token=" . $this->token . "'><button>Reestablecer contraseña</button></a>
                 <p>Si no solicitaste reestablecer tus credenciales en UpTask, por favor ignora este correo electrónico.</p>
                 <div><p></p></div>
                 <p><span>Este correo electrónico fue enviado desde una dirección solamente de notificaciones que no puede aceptar correo electrónico entrante. Por favor no respondas a este mensaje.</span></p>
